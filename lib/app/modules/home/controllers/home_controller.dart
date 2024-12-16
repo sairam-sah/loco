@@ -2,6 +2,7 @@ import 'dart:async';
 
 import 'package:geolocator/geolocator.dart';
 import 'package:get/get.dart';
+import 'package:share_plus/share_plus.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 class HomeController extends GetxController {
@@ -67,6 +68,17 @@ class HomeController extends GetxController {
 
     } else {
       Get.snackbar('Error', 'Could not open the map application.');
+    }
+  }
+
+// share the location
+  Future<void> shareLocation() async {
+    if (latitude.value != 0.0 && longitude.value != 0.0) {
+      String message =
+          'Here is my current location:\nhttps://www.google.com/maps/search/?api=1&query=${latitude.value},${longitude.value}';
+      await Share.share(message);
+    } else {
+      Get.snackbar('Location Error', 'Unable to share location. Please ensure location updates are active.');
     }
   }
 

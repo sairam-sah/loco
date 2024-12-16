@@ -55,6 +55,12 @@ class HomeView extends GetView<HomeController> {
               child: const Text(
                 'Open In Maps',
               )),
+          SSpacing.lgH,
+          ElevatedButton(
+              onPressed: controller.shareLocation,
+              child: const Text(
+                'Share Location',
+              )),
         ],
       )),
     );
